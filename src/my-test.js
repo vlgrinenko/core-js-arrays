@@ -1,5 +1,13 @@
-function insertItem(arr, item, index) {
-  return [...arr.splice(0, index), item, ...arr.splice(index - 1)];
+function createNDimensionalArray(n, size) {
+  if (n === 0) {
+    return 0;
+  }
+
+  const arr = new Array(size);
+
+  arr.fill(n === 1 ? 0 : createNDimensionalArray(n - 1, size));
+
+  return arr;
 }
 
-console.log(insertItem([1, 3, 4, 5], 2, 1));
+console.log(createNDimensionalArray(3, 2));
