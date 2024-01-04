@@ -1,15 +1,5 @@
-function getAverage(arr) {
-  if (arr.length === 0) {
-    return 0;
-  }
-  const sum = arr.reduce((acc, val) => acc + val, 0);
-  const average = sum / arr.length;
-
-  if (Number.isInteger(average)) {
-    return average;
-  }
-
-  return Number(average.toFixed(2));
+function insertItem(arr, item, index) {
+  return [...arr.splice(0, index), item, ...arr.splice(index - 1)];
 }
 
-console.log(getAverage([1, 10, 100, 1000]));
+console.log(insertItem([1, 3, 4, 5], 2, 1));
