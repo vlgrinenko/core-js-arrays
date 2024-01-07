@@ -1,24 +1,18 @@
-/**
- * Returns an array containing indices of odd elements in the input array.
- *
- * @param {array} numbers - The array of numbers.
- * @return {array} - An array containing indices of odd elements.
- *
- * @example
- *    getIndicesOfOddNumbers([1, 2, 3, 4, 5]) => [0, 2, 4]
- *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
- *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
- */
-function getIndicesOfOddNumbers(numbers) {
-  const oddIndexes = [];
-  numbers.forEach((el, index) => {
-    if (el % 2 !== 0) {
-      oddIndexes.push(index);
+function getHexRGBValues(arr) {
+  const result = [];
+  arr.forEach((element) => {
+    let newElement = element.toString(16).toUpperCase();
+
+    if (newElement.length !== 6) {
+      newElement = '0'.repeat(6 - newElement.length) + newElement;
     }
+
+    newElement = '#'.concat(newElement);
+    result.push(newElement);
   });
 
-  return oddIndexes;
+  return result;
 }
 
-const xxx = [1, 2, 3, 4, 5];
-console.log(getIndicesOfOddNumbers(xxx));
+const xxx = [0, 255, 16777215];
+console.log(getHexRGBValues(xxx));
