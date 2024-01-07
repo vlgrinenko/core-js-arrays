@@ -1,36 +1,24 @@
 /**
- * Creates an identity matrix of the specified size.
+ * Returns an array containing indices of odd elements in the input array.
  *
- * @param {number} n - A size of the matrix.
- * @return {array} - An identity matrix.
+ * @param {array} numbers - The array of numbers.
+ * @return {array} - An array containing indices of odd elements.
  *
  * @example
- *     getIdentityMatrix(1)  => [[1]]
- *
- *     getIdentityMatrix(2) => [[1,0],
- *                             [0,1]]
- *
- *                              [[1,0,0,0,0],
- *                              [0,1,0,0,0],
- *     getIdentityMatrix(5) =>  [0,0,1,0,0],
- *                              [0,0,0,1,0],
- *                              [0,0,0,0,1]]
+ *    getIndicesOfOddNumbers([1, 2, 3, 4, 5]) => [0, 2, 4]
+ *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
+ *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIdentityMatrix(n) {
-  const matrix = [];
-  for (let i = 0; i < n; i += 1) {
-    const row = [];
-    for (let j = 0; j < n; j += 1) {
-      if (i === j) {
-        row.push(1);
-      } else {
-        row.push(0);
-      }
+function getIndicesOfOddNumbers(numbers) {
+  const oddIndexes = [];
+  numbers.forEach((el, index) => {
+    if (el % 2 !== 0) {
+      oddIndexes.push(index);
     }
-    matrix.push(row);
-  }
+  });
 
-  return matrix;
+  return oddIndexes;
 }
 
-console.log(getIdentityMatrix(3));
+const xxx = [1, 2, 3, 4, 5];
+console.log(getIndicesOfOddNumbers(xxx));
