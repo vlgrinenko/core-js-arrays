@@ -450,20 +450,9 @@ function getFalsyValuesCount(arr) {
  *                              [0,0,0,0,1]]
  */
 function getIdentityMatrix(n) {
-  const matrix = [];
-  for (let i = 0; i < n; i += 1) {
-    const row = [];
-    for (let j = 0; j < n; j += 1) {
-      if (i === j) {
-        row.push(1);
-      } else {
-        row.push(0);
-      }
-    }
-    matrix.push(row);
-  }
-
-  return matrix;
+  return Array.from({ length: n }, (col, i) =>
+    Array.from({ length: n }, (row, j) => (i === j ? 1 : 0))
+  );
 }
 
 /**
@@ -478,14 +467,9 @@ function getIdentityMatrix(n) {
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
 function getIndicesOfOddNumbers(numbers) {
-  const oddIndexes = [];
-  numbers.forEach((el, index) => {
-    if (el % 2 !== 0) {
-      oddIndexes.push(index);
-    }
-  });
-
-  return oddIndexes;
+  return numbers
+    .map((num, index) => (num % 2 !== 0 ? index : null))
+    .filter((index) => index !== null);
 }
 
 /**
@@ -499,8 +483,7 @@ function getIndicesOfOddNumbers(numbers) {
  *    getHexRGBValues([]) => []
  */
 function getHexRGBValues(arr) {
-  const result = [];
-  arr.forEach((element) => {
+  return arr.map((element) => {
     let newElement = element.toString(16).toUpperCase();
 
     if (newElement.length !== 6) {
@@ -508,10 +491,8 @@ function getHexRGBValues(arr) {
     }
 
     newElement = '#'.concat(newElement);
-    result.push(newElement);
+    return newElement;
   });
-
-  return result;
 }
 
 /**
@@ -528,8 +509,12 @@ function getHexRGBValues(arr) {
  *   getMaxItems([ 10, 2, 7, 5, 3, -5 ], 3) => [ 10, 7, 5 ]
  *   getMaxItems([ 10, 10, 10, 10 ], 3) => [ 10, 10, 10 ]
  */
-function getMaxItems(/* arr, n */) {
-  throw new Error('Not implemented');
+function getMaxItems(arr, n) {
+  const newArr = [...arr];
+
+  newArr.sort((a, b) => b - a);
+
+  return newArr.slice(0, n);
 }
 
 /**
@@ -544,8 +529,8 @@ function getMaxItems(/* arr, n */) {
  *    findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']) => [ 'b', 'c' ]
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
-function findCommonElements(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function findCommonElements(arr1, arr2) {
+  return arr1.filter((el) => arr2.includes(el));
 }
 
 /**
